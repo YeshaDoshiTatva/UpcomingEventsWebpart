@@ -54,6 +54,6 @@ gulp package-solution - TODO
 2. Click on add icon button and search for the calendar webpart deployed.
 3. The webpart will be added in the page on clicking the webpart name.
 4. Change the webpart properties to view the functionality of the webpart.
-5. Change the below properties"
-List URL - Enter the path till ListName (Eg: https://contoso/sites/sitename/Lists/listname)
-Number of items to be displayed - Enter integer
+5. Change the below properties:
+* List URL - Enter the path till ListName (Eg: https://contoso/sites/sitename/Lists/listname)
+* Number of items to be displayed - Enter integer
