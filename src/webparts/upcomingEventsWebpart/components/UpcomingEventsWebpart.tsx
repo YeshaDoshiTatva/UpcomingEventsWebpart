@@ -8,7 +8,6 @@ import * as strings from 'UpcomingEventsWebpartWebPartStrings';
 import {Icon} from 'office-ui-fabric-react';
 import * as moment from 'moment';
 import * as Constants from './../../../Common/Constants';
-import { Log } from '@microsoft/sp-core-library';  
 
 export default class UpcomingEventsWebpart extends React.Component<IUpcomingEventsWebpartProps, IUpcomingEventsWebpartState> {
 
