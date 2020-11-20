@@ -6,7 +6,6 @@ import {
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
-
 import * as strings from 'UpcomingEventsWebpartWebPartStrings';
 import UpcomingEventsWebpart from './components/UpcomingEventsWebpart';
 import { IUpcomingEventsWebpartProps } from './components/IUpcomingEventsWebpartProps';
@@ -33,7 +32,7 @@ export default class UpcomingEventsWebpartWebPart extends BaseClientSideWebPart 
     ReactDom.render(element, this.domElement);
   }
 
-  protected onDispose(): void {
+  onDispose = ():void => {
     ReactDom.unmountComponentAtNode(this.domElement);
   }
 

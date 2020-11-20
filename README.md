@@ -25,6 +25,14 @@ gulp serve - TODO
 gulp bundle - TODO
 gulp package-solution - TODO
 
+### Build Instructions in Visual Studio code
+1. Run command npm i @fluentui/react
+2. Run command npm install moment --save
+3. Run command gulp build
+4. Run command gulp bundle --ship
+5. Run command gulp package-solution --ship
+
+
 ### Build Instructions
 1. Download the source code from https://github.com/YeshaDoshiTatva/CalendarSPFxWebpart
 2. Unzip the downloaded zip folder.
@@ -46,3 +54,6 @@ gulp package-solution - TODO
 2. Click on add icon button and search for the calendar webpart deployed.
 3. The webpart will be added in the page on clicking the webpart name.
 4. Change the webpart properties to view the functionality of the webpart.
+5. Change the below properties"
+    List URL - Enter the path till ListName (Eg: https://contoso/sites/sitename/Lists/listname)
+    Number of items to be displayed - Enter integer

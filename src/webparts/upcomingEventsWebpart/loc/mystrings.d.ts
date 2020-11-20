@@ -5,6 +5,7 @@ declare interface IUpcomingEventsWebpartWebPartStrings {
   NoItemFoundMessage: string;
   PropertiesMessage: string;
   DisplayItemsMessage: string;
+  ListURLMessage: string;
 }
 
 declare module 'UpcomingEventsWebpartWebPartStrings' {
