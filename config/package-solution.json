@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "upcoming-events-webpart-client-side-solution",
+    "id": "ffbe1988-3705-45a4-be1c-e98fa7927b1d",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/upcoming-events-webpart.sppkg"
+  }
+}
