@@ -34,9 +34,9 @@ gulp package-solution - TODO
 
 
 ### Build Instructions
-1. Download the source code from https://github.com/YeshaDoshiTatva/CalendarSPFxWebpart
+1. Download the source code from https://github.com/YeshaDoshiTatva/UpcomingEventsWebpart
 2. Unzip the downloaded zip folder.
-3. Navigate to .sppkg file in path '\sharepoint\solution\calendar-spfx-webpart.sppkg'.
+3. Navigate to .sppkg file in path '\sharepoint\solution\upcoming-events-webpart.sppkg'.
 4. Open the App Catalog site. Navigate to Site Contents and then to Apps for SharePoint folder.
 5. Click Files option in top bar and then click on 'Upload Document'.
 6. Choose the .sppkg file and click on OK.
