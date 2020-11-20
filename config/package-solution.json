@@ -5,7 +5,20 @@
     "id": "ffbe1988-3705-45a4-be1c-e98fa7927b1d",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "features": [
+      {
+        "title": "UpcomingEvents-solution",
+        "description": "UpcomingEvents-solution",
+        "id": "ad76b9a8-208e-431f-bc16-4cfb5493624b",
+        "version": "1.0.0.0",
+        "assets": {
+          "elementManifests": [
+            "elements.xml"
+          ]
+        }
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/upcoming-events-webpart.sppkg"

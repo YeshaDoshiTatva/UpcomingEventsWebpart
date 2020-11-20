@@ -1,11 +1,11 @@
 declare interface IUpcomingEventsWebpartWebPartStrings {
   PropertyPaneDescription: string;
   ListURLFieldLabel: string;
-  DisplayItems: string;
+  DisplayItemsFieldLabel: string;
   NoItemFoundMessage: string;
-  PropertiesMessage: string;
-  DisplayItemsMessage: string;
-  ListURLMessage: string;
+  InvalidPropertiesMessage: string;
+  InvalidDisplayItemsMessage: string;
+  InvalidListURLMessage: string;
 }
 
 declare module 'UpcomingEventsWebpartWebPartStrings' {

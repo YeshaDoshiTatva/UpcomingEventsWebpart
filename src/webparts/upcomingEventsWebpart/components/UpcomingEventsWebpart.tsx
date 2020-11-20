@@ -2,12 +2,13 @@ import * as React from 'react';
 import styles from './UpcomingEventsWebpart.module.scss';
 import { IUpcomingEventsWebpartProps } from './IUpcomingEventsWebpartProps';
 import { IUpcomingEventsWebpartState } from './IUpcomingEventsWebpartState';
-import { IUpcomingEventsItems } from '../Models/IUpcomingEventsItems';
+import { IUpcomingEventsItems } from './../../../Models/IUpcomingEventsItems';
 import { SPHttpClient, SPHttpClientResponse} from '@microsoft/sp-http';
 import * as strings from 'UpcomingEventsWebpartWebPartStrings';
 import {Icon} from 'office-ui-fabric-react';
 import * as moment from 'moment';
-import * as Constants from '../Common/Constants';
+import * as Constants from './../../../Common/Constants';
+import { Log } from '@microsoft/sp-core-library';  
 
 export default class UpcomingEventsWebpart extends React.Component<IUpcomingEventsWebpartProps, IUpcomingEventsWebpartState> {
 
@@ -42,55 +43,55 @@ export default class UpcomingEventsWebpart extends React.Component<IUpcomingEven
   getListItems = () => {
     ///<summary>Get items from the list.</summary>
     const messageDiv = document.querySelector("#divMessage");
-    let noOfItems = 5;
+    let noOfItems: number = 5;
+
     if (!isNaN(Number(this.props.DisplayItems)) && Number(this.props.DisplayItems) > 0) {
       noOfItems = Number(this.props.DisplayItems);
     }
-    else if(this.props.DisplayItems !== undefined && (isNaN(Number(this.props.DisplayItems))) || (!isNaN(Number(this.props.DisplayItems)) && Number(this.props.DisplayItems) <= 0)){
-      messageDiv.innerHTML = strings.DisplayItemsMessage;
+    else if (this.props.DisplayItems !== undefined && (isNaN(Number(this.props.DisplayItems))) || (!isNaN(Number(this.props.DisplayItems)) && Number(this.props.DisplayItems) <= 0)) {
+      messageDiv.innerHTML = strings.InvalidDisplayItemsMessage;
       this.setState({CalendarItems: []});
       return;
     }
     
-    try{
-      if(this.props.ListUrl !== undefined){
-        let strListURLString = this.props.ListUrl;
-        let strCurrentURL = new URL(strListURLString);
-        let strListAbsoluteURL = strListURLString.substr(0, strListURLString.lastIndexOf('/Lists/'));
+    try {
+      if (this.props.ListUrl !== undefined) {
+        let strCurrentURL = new URL(this.props.ListUrl);
+        let strListAbsoluteURL = this.props.ListUrl.substr(0, this.props.ListUrl.lastIndexOf('/Lists/'));
         let strListPathName = strCurrentURL.pathname;
         let todayDate = new Date().toISOString();
         
-        this.props.spHttpClient.get(strListAbsoluteURL+"/_api/Web/GetList('"+strListPathName+"')/items?$select=ID,Title,Description,EventDate&$top="+noOfItems+"&$filter=EventDate ge '"+todayDate+"'", SPHttpClient.configurations.v1)
+        this.props.ObjSPHttpClient.get(strListAbsoluteURL+"/_api/Web/GetList('"+ strListPathName +"')/items?$select=ID,Title,Description,EventDate&$top="+noOfItems+"&$filter=EventDate ge '"+todayDate+"'", SPHttpClient.configurations.v1)
         .then((response: SPHttpClientResponse) => {
-          if(response.ok){
+          if (response.ok) {
             response.json().then((responseJSON) => {
               this.lstCalendarItem = responseJSON.value;
               if(this.lstCalendarItem != null && this.lstCalendarItem.length > 0){
                 messageDiv.innerHTML = "";
                 this.setState({CalendarItems: this.lstCalendarItem});
               }
-              else if(this.lstCalendarItem.length === 0){
+              else if (this.lstCalendarItem.length === 0) {
                 messageDiv.innerHTML = strings.NoItemFoundMessage;
                 this.setState({CalendarItems: []});
               }
             });
           }
           else{
-            messageDiv.innerHTML = strings.ListURLMessage;
+            messageDiv.innerHTML = strings.InvalidListURLMessage;
             this.setState({CalendarItems: []});
           }
         }).catch((error) => {
-          console.log("Error in getListItems in rest api call ---->",error);
+          console.error("Error in getListItems rest api call (UpcomingEventsWebpart.tsx) ----> ",error);
         });
       }
-      else{
-        messageDiv.innerHTML = strings.PropertiesMessage;
+      else {
+        messageDiv.innerHTML = strings.InvalidListURLMessage;
         this.setState({CalendarItems: []});
       }
     }
-    catch(error){
-      console.log("Error in getListItems ---->",error);
-      messageDiv.innerHTML = strings.PropertiesMessage;
+    catch(error) {
+      console.error("Error in getListItems (UpcomingEventsWebpart.tsx) ----> ",error);
+      messageDiv.innerHTML = strings.InvalidPropertiesMessage;
       this.setState({CalendarItems: []});
     }
   }
@@ -110,7 +111,7 @@ export default class UpcomingEventsWebpart extends React.Component<IUpcomingEven
             {this.state.CalendarItems.map(item => (
               <div className={styles.msGridcol}>
                 <Icon iconName="EventInfo" id={styles.clsIcon} className="ms-Icon"/>
-                <h3><a target="_blank" href={this.props.ListUrl+Constants.FORMURL+item.ID} className={styles.clsLink}>{item.Title}</a></h3>
+                <h3><a target="_blank" data-interception='off' rel='noopener noreferrer' href={this.props.ListUrl + Constants.FORMURL + item.ID} className={styles.clsLink}>{item.Title}</a></h3>
                 <p>{moment(item.EventDate).format(Constants.DATEFORMAT)}</p>
                 <p>{item.Description != null && item.Description.length > 0 ? item.Description.replace(/<[^>]+>/g, '') : ''}</p>
               </div>
@@ -121,3 +122,4 @@ export default class UpcomingEventsWebpart extends React.Component<IUpcomingEven
     );
   }
 }
+  

@@ -1,4 +1,4 @@
-import { IUpcomingEventsItems } from '../Models/IUpcomingEventsItems';
+import { IUpcomingEventsItems } from './../../../Models/IUpcomingEventsItems';
 
 export interface IUpcomingEventsWebpartState{
     CalendarItems: IUpcomingEventsItems[];

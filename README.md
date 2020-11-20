@@ -57,3 +57,4 @@ gulp package-solution - TODO
 5. Change the below properties:
 * List URL - Enter the path till ListName (Eg: https://contoso/sites/sitename/Lists/listname)
 * Number of items to be displayed - Enter integer
+6. Upcoming Events Calendar list will be created. You can use that list.

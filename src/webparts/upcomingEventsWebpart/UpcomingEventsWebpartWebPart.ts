@@ -23,7 +23,7 @@ export default class UpcomingEventsWebpartWebPart extends BaseClientSideWebPart 
       {
         ListUrl: this.properties.PropertiesListUrl,
         DisplayItems: this.properties.PropertiesDisplayItems,
-        spHttpClient: this.context.spHttpClient,
+        ObjSPHttpClient: this.context.spHttpClient,
         Title: "",
         Description: ""
       }
@@ -51,7 +51,7 @@ export default class UpcomingEventsWebpartWebPart extends BaseClientSideWebPart 
                   value: ""
                 }),
                 PropertyPaneTextField('PropertiesDisplayItems', {
-                  label: strings.DisplayItems,
+                  label: strings.DisplayItemsFieldLabel,
                   value: "5"
                 }),
               ]
